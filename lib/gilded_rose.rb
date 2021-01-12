@@ -7,8 +7,13 @@ attr_reader :items
     @items = items
   end
 
-  def update_quality()
+  def update_quality
     @items.each do |item|
+      update_item(item)
+    end
+  end
+
+  def update_item(item)
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
         if item.quality > 0
           if item.name != "Sulfuras, Hand of Ragnaros"
@@ -54,4 +59,3 @@ attr_reader :items
       end
     end
   end
-end
