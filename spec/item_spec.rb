@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 require 'item'
 
 describe Item do
-
-  let(:pizza) {Item.new("Pizza",7, 5)}
+  let(:pizza) { Item.new('Pizza', 7, 5) }
 
   describe '#Initialize' do
     it 'Instances of the item class are initialized with a name instance variable' do
-      expect(pizza.name).to eq("Pizza")
+      expect(pizza.name).to eq('Pizza')
     end
     it 'Instances of the item class are initialized with a sell_in instance variable' do
       expect(pizza.sell_in).to eq(7)
@@ -18,7 +19,7 @@ describe Item do
 
   describe '#to_s' do
     it 'returns the item\'s name, sell_in and quality as a string' do
-      expect(pizza.to_s).to eq("Pizza, 7, 5")
+      expect(pizza.to_s).to eq('Pizza, 7, 5')
     end
   end
 end
