@@ -20,33 +20,33 @@ class GildedRose
   end
 
   def decrease_qaulity(item)
-    item.quality -= 1 if item.quality.positive?
+    item.quality -= 1 if item.quality.positive? && item.name != 'Sulfuras, Hand of Ragnaros'
   end
 
-  def decrease_sell_in(item)
-  end
+  def decrease_sell_in(item); end
 
   def update_item(item)
     if (item.name == 'Aged Brie') || (item.name == 'Backstage passes to a TAFKAL80ETC concert')
       increase_quality(item)
       if item.name == 'Backstage passes to a TAFKAL80ETC concert'
         increase_quality(item) if item.sell_in < 11
-        increase_quality(item) if item.sell_in < 6 
+        increase_quality(item) if item.sell_in < 6
       end
     else
-      decrease_qaulity(item) if (item.name != 'Sulfuras, Hand of Ragnaros')
+      decrease_qaulity(item)
     end
 
-    item.sell_in -= 1 if item.name != 'Sulfuras, Hand of Ragnaros'
+    item.sell_in -= 1 unless item.name == 'Sulfuras, Hand of Ragnaros'
+    
     if item.sell_in.negative?
       if item.name != 'Aged Brie'
-        if item.name != 'Backstage passes to a TAFKAL80ETC concert'
-          decrease_qaulity(item) if (item.name != 'Sulfuras, Hand of Ragnaros')
-        else
+        if item.name == 'Backstage passes to a TAFKAL80ETC concert'
           item.quality -= item.quality
+        else
+          decrease_qaulity(item)
         end
-      elsif item.quality < 50
-        item.quality += 1
+      else
+        increase_quality(item)
       end
     end
   end
