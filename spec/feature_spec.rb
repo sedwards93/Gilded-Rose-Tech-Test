@@ -86,6 +86,5 @@ describe 'Features' do
         expect { gilded_rose.update_quality }.to change { gilded_rose.items[4].quality }.by(-2)
       end
     end
-    
   end
 end

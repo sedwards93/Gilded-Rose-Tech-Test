@@ -18,6 +18,7 @@ class Conjured
 
   def update_quality
     return if @quality.negative?
+
     @quality -= 2
   end
 
