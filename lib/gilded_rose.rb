@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative 'item'
+require_relative 'aged_brie'
+require_relative 'backstage'
 
 class GildedRose
   attr_reader :items
@@ -10,30 +12,28 @@ class GildedRose
   end
 
   def update_quality
-    @items.each do |item|
-      update_item(item)
+    @items.each_with_index do |item, index|
+      update_item(item, index)
     end
   end
 
-  def update_item(item)
-    decrease_sell_in(item)
+  def update_item(item, index)
     case item.name
     when 'Aged Brie'
-      increase_quality(item)
-      increase_quality(item) if item.sell_in < 1
+     @items[index] = AgedBrie.new(item.sell_in, item.quality)
+     @items[index].update_item
     when 'Backstage passes to a TAFKAL80ETC concert'
-      increase_quality(item)
-      increase_quality(item) if item.sell_in < 10
-      increase_quality(item) if item.sell_in < 6
-      item.quality -= item.quality if item.sell_in < 1
+     @items[index] = BackStage.new(item.sell_in, item.quality)
+     @items[index].update_item
     else
+      decrease_sell_in(item)
       decrease_qaulity(item)
       decrease_qaulity(item) if item.sell_in < 1
     end
   end
 
   private
-  
+
   def increase_quality(item)
     item.quality += 1 if item.quality < 50
   end
