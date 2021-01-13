@@ -4,10 +4,11 @@ require 'gilded_rose'
 
 describe 'Features' do
   let(:items) do
-    [Item.new('Normal_Item', 10, 20),
+    [Item.new('Normal', 10, 20),
      Item.new('Aged Brie', 10, 10),
      Item.new('Sulfuras, Hand of Ragnaros', 10, 80),
-     Item.new('Backstage passes to a TAFKAL80ETC concert', 11, 20)]
+     Item.new('Backstage passes to a TAFKAL80ETC concert', 11, 20),
+     Item.new('Conjured', 10, 10)]
   end
   let(:gilded_rose) { GildedRose.new(items) }
 
@@ -79,5 +80,12 @@ describe 'Features' do
         expect(gilded_rose.items[3].quality).to eq(0)
       end
     end
+
+    context 'Conjured' do
+      it 'degrades in Quality twice as fast as normal items' do
+        expect { gilded_rose.update_quality }.to change { gilded_rose.items[4].quality }.by(-2)
+      end
+    end
+    
   end
 end

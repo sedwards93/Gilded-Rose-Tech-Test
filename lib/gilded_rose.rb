@@ -4,6 +4,8 @@ require_relative 'item'
 require_relative 'aged_brie'
 require_relative 'backstage'
 require_relative 'normal'
+require_relative 'sulfuras'
+require_relative 'conjured'
 
 class GildedRose
   attr_reader :items
@@ -18,32 +20,25 @@ class GildedRose
     end
   end
 
+  private
+
   def update_item(item, index)
-    case item.name
+    name, sell_in, quality = item.name, item.sell_in, item.quality
+    case name
     when 'Aged Brie'
-     @items[index] = AgedBrie.new(item.sell_in, item.quality)
-     @items[index].update_item
+      @items[index] = AgedBrie.new(sell_in, quality)
+      @items[index].update_item
     when 'Backstage passes to a TAFKAL80ETC concert'
-     @items[index] = BackStage.new(item.sell_in, item.quality)
-     @items[index].update_item
+      @items[index] = BackStage.new(sell_in, quality)
+      @items[index].update_item
+    when 'Sulfuras, Hand of Ragnaros'
+      @items[index] = Sulfuras.new(sell_in, quality)
+    when 'Conjured'
+      @items[index] = Conjured.new(sell_in, quality)
+      @items[index].update_item
     else
-      @items[index] = Normal.new(item.name, item.sell_in, item.quality)
+      @items[index] = Normal.new(name, sell_in, quality) 
       @items[index].update_item
     end
   end
-
-  private
-
-  def increase_quality(item)
-    item.quality += 1 if item.quality < 50
-  end
-
-  def decrease_qaulity(item)
-    item.quality -= 1 unless item.quality.negative? || item.name == 'Sulfuras, Hand of Ragnaros'
-  end
-
-  def decrease_sell_in(item)
-    item.sell_in -= 1 unless item.name == 'Sulfuras, Hand of Ragnaros'
-  end
-
 end

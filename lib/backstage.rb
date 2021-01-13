@@ -1,8 +1,9 @@
-class BackStage
+# frozen_string_literal: true
 
+class BackStage
   attr_reader :name, :sell_in, :quality
 
-  def initialize(name = "Backstage passes to a TAFKAL80ETC concert", sell_in, quality)
+  def initialize(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in, quality)
     @name = name
     @sell_in = sell_in
     @quality = quality
@@ -10,7 +11,7 @@ class BackStage
 
   def update_item
     update_sell_in
-   update_quality
+    update_quality
   end
 
   private
@@ -23,7 +24,6 @@ class BackStage
   end
 
   def update_sell_in
-    @sell_in -= 1 
+    @sell_in -= 1
   end
-
 end

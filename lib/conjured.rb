@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class AgedBrie
+class Conjured
   attr_reader :name, :sell_in, :quality
 
-  def initialize(name = 'Aged Brie', sell_in, quality)
+  def initialize(name = 'Conjured', sell_in, quality)
     @name = name
     @sell_in = sell_in
     @quality = quality
@@ -17,8 +17,8 @@ class AgedBrie
   private
 
   def update_quality
-    @quality += 1 if @sell_in < 1 && @quality < 50
-    @quality += 1 if @quality < 50
+    return if @quality.negative?
+    @quality -= 2
   end
 
   def update_sell_in
