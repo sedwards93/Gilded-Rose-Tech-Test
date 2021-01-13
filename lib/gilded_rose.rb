@@ -31,25 +31,18 @@ class GildedRose
     case item.name
     when 'Aged Brie'
       increase_quality(item)
-      increase_quality(item)
+      increase_quality(item) if item.sell_in < 1
     when 'Backstage passes to a TAFKAL80ETC concert'
       increase_quality(item)
       increase_quality(item) if item.sell_in < 11
       increase_quality(item) if item.sell_in < 6
+      item.quality -= item.quality if item.sell_in < 1
     else
       decrease_qaulity(item)
+      decrease_qaulity(item) if item.sell_in < 1
     end
 
     decrease_sell_in(item)
-    return unless item.sell_in.negative?
 
-    case item.name
-    when 'Aged Brie'
-      increase_quality(item)
-    when 'Backstage passes to a TAFKAL80ETC concert'
-      item.quality -= item.quality
-    else
-      decrease_qaulity(item)
-    end
   end
 end
