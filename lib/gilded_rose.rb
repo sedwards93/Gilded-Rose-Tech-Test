@@ -28,15 +28,18 @@ class GildedRose
   end
 
   def update_item(item)
-    if (item.name == 'Aged Brie') || (item.name == 'Backstage passes to a TAFKAL80ETC concert')
+    case item.name
+    when 'Aged Brie'
       increase_quality(item)
-      if item.name == 'Backstage passes to a TAFKAL80ETC concert'
-        increase_quality(item) if item.sell_in < 11
-        increase_quality(item) if item.sell_in < 6
-      end
+      increase_quality(item)
+    when 'Backstage passes to a TAFKAL80ETC concert'
+      increase_quality(item)
+      increase_quality(item) if item.sell_in < 11
+      increase_quality(item) if item.sell_in < 6
     else
       decrease_qaulity(item)
     end
+
     decrease_sell_in(item)
     return unless item.sell_in.negative?
 
