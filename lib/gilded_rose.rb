@@ -3,6 +3,7 @@
 require_relative 'item'
 require_relative 'aged_brie'
 require_relative 'backstage'
+require_relative 'normal'
 
 class GildedRose
   attr_reader :items
@@ -26,9 +27,8 @@ class GildedRose
      @items[index] = BackStage.new(item.sell_in, item.quality)
      @items[index].update_item
     else
-      decrease_sell_in(item)
-      decrease_qaulity(item)
-      decrease_qaulity(item) if item.sell_in < 1
+      @items[index] = Normal.new(item.name, item.sell_in, item.quality)
+      @items[index].update_item
     end
   end
 

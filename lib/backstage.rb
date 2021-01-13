@@ -9,20 +9,20 @@ class BackStage
   end
 
   def update_item
-    decrease_sell_in
-    increase_quality
+    update_sell_in
+   update_quality
   end
 
   private
 
-  def increase_quality
-     @quality += 1
-     @quality += 1 if @sell_in < 10
-     @quality += 1 if @sell_in < 6
+  def update_quality
+    @quality += 1
+    @quality += 1 if @sell_in < 10
+    @quality += 1 if @sell_in < 6
     @quality -= @quality if @sell_in < 1
   end
 
-  def decrease_sell_in
+  def update_sell_in
     @sell_in -= 1 
   end
 
