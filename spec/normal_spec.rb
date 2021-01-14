@@ -34,6 +34,3 @@ describe Normal do
     end
   end
 end
-
-  
-
