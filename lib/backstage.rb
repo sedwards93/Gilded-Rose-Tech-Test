@@ -1,14 +1,7 @@
 # frozen_string_literal: true
-
-class BackStage
-  attr_reader :name, :sell_in, :quality
-
-  def initialize(name = 'Backstage passes to a TAFKAL80ETC concert', sell_in, quality)
-    @name = name
-    @sell_in = sell_in
-    @quality = quality
-  end
-
+require_relative 'item'
+class BackStage < Item
+ 
   def update_item
     update_sell_in
     update_quality

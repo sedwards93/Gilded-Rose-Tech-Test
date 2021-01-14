@@ -1,13 +1,6 @@
 # frozen_string_literal: true
-
-class AgedBrie
-  attr_reader :name, :sell_in, :quality
-
-  def initialize(name = 'Aged Brie', sell_in, quality)
-    @name = name
-    @sell_in = sell_in
-    @quality = quality
-  end
+require_relative 'item'
+class AgedBrie < Item
 
   def update_item
     update_sell_in
