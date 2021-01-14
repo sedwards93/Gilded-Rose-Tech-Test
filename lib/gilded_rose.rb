@@ -16,29 +16,23 @@ class GildedRose
 
   def update_quality
     @items.each_with_index do |item, index|
-      update_item(item, index)
-    end
-  end
-
-  private
-
-  def update_item(item, index)
-    name, sell_in, quality = item.name, item.sell_in, item.quality
-    case name
-    when 'Aged Brie'
-      @items[index] = AgedBrie.new(sell_in, quality)
-      @items[index].update_item
-    when 'Backstage passes to a TAFKAL80ETC concert'
-      @items[index] = BackStage.new(sell_in, quality)
-      @items[index].update_item
-    when 'Sulfuras, Hand of Ragnaros'
-      @items[index] = Sulfuras.new(sell_in, quality)
-    when 'Conjured'
-      @items[index] = Conjured.new(sell_in, quality)
-      @items[index].update_item
-    else
-      @items[index] = Normal.new(name, sell_in, quality) 
-      @items[index].update_item
+      name, sell_in, quality = item.name, item.sell_in, item.quality
+      case name
+      when 'Aged Brie'
+        @items[index] = AgedBrie.new(sell_in, quality)
+        @items[index].update_item
+      when 'Backstage passes to a TAFKAL80ETC concert'
+        @items[index] = BackStage.new(sell_in, quality)
+        @items[index].update_item
+      when 'Sulfuras, Hand of Ragnaros'
+        @items[index] = Sulfuras.new(sell_in, quality)
+      when 'Conjured'
+        @items[index] = Conjured.new(sell_in, quality)
+        @items[index].update_item
+      else
+        @items[index] = Normal.new(name, sell_in, quality) 
+        @items[index].update_item
+      end
     end
   end
 end
